@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+</head>
+<body>
+    <form id="form">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="Name" required>
+        </div>
+        <br>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" placeholder="Age" required>
+        </div>
+        <br>
+        <div>
+            <label for="gender">Gender:</label>
+            <input type="radio" name="gender" value="Male" id="male">Male </input>
+            <input type="radio" name="gender" value="Female" id="female">Female </input>
+            <input type="radio" name="gender" value="Other" id="other">Other </input>
+        </div>
+        <br>
+        <div>
+            <label>Country:</label>
+            <select id="country" name="country">
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="Japan">Japan</option>
+                <option value="China">China</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label>Technological Stack:</label>
+            <input type="checkbox" name="tech" value="HTML"> HTML
+            <input type="checkbox" name="tech" value="CSS"> CSS
+            <input type="checkbox" name="tech" value="JS"> JS
+            <input type="checkbox" name="tech" value="React"> React
+            <input type="checkbox" name="tech" value="React Native"> React Native
+        </div>
+        <br>
+        <div>
+            <label>Address:</label>
+            <textarea id="address" rows="3" name="address"></textarea>
+        </div>
+        <br>
+        <div>
+            <label>Telephone:</label>
+            <input type="tel" id="telephone" name="telephone">
+        </div>
+        <br>
+        <div>
+            <label>Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <br>
+        <button type="reset" id="resetBtn">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+    <div id="tableContainer"></div>
+
+    <script>
+
+        const form = document.querySelector('#form');
+        const tableContainer = document.querySelector('#tableContainer');
+        
+        form.onsubmit = (e)=>{
+            e.preventDefault();
+
+            const name = form.name.value;
+            const age = form.age.value
+            const gender = form.gender.value;
+            const country = form.country.value;
+            const address = form.address.value;
+            const telephone = form.telephone.value;
+            const email = form.email.value;
+            const techStack = [];
+
+            if(!name || !age || !gender || !country || !address || !telephone || !email){
+                alert("Please fill all required fields");
+                return;
+            }
+            form.tech.forEach((checkbox)=>{
+                if(checkbox.checked){
+                    techStack.push(checkbox.value);
+                }
+            });
+            const table = `
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Country</th>
+                        <th>Technological Stack</th>
+                        <th>Address</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr>   
+                        <td>${name}</td>
+                        <td>${age}</td>
+                        <td>${gender}</td>
+                        <td>${country}</td>
+                        <td>${techStack.join(', ')}</td>
+                        <td>${address}</td>
+                        <td>${telephone}</td>
+                        <td>${email}</td>
+                    </tr>
+                </table>
+            `;  
+            tableContainer.innerHTML = table;
+
+            
+        }
+
+        form.onreset = ()=>{
+            tableContainer.innerHTML = '';
+        }
+        
+
+    </script>
+</body>
+</html>
