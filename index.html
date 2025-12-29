@@ -1,131 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM</title>
-</head>
-<body>
-    <form id="form">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" placeholder="Name" required>
-        </div>
-        <br>
-        <div>
-            <label for="age">Age:</label>
-            <input type="number" name="age" id="age" placeholder="Age" required>
-        </div>
-        <br>
-        <div>
-            <label for="gender">Gender:</label>
-            <input type="radio" name="gender" value="Male" id="male">Male </input>
-            <input type="radio" name="gender" value="Female" id="female">Female </input>
-            <input type="radio" name="gender" value="Other" id="other">Other </input>
-        </div>
-        <br>
-        <div>
-            <label>Country:</label>
-            <select id="country" name="country">
-                <option value="India">India</option>
-                <option value="USA">USA</option>
-                <option value="Japan">Japan</option>
-                <option value="China">China</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Technological Stack:</label>
-            <input type="checkbox" name="tech" value="HTML"> HTML
-            <input type="checkbox" name="tech" value="CSS"> CSS
-            <input type="checkbox" name="tech" value="JS"> JS
-            <input type="checkbox" name="tech" value="React"> React
-            <input type="checkbox" name="tech" value="React Native"> React Native
-        </div>
-        <br>
-        <div>
-            <label>Address:</label>
-            <textarea id="address" rows="3" name="address"></textarea>
-        </div>
-        <br>
-        <div>
-            <label>Telephone:</label>
-            <input type="tel" id="telephone" name="telephone">
-        </div>
-        <br>
-        <div>
-            <label>Email:</label>
-            <input type="email" id="email" name="email">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Info Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form-card">
+      <header>
+        <h1>Personal Info</h1>
+        <p>Update your personal details here</p>
+      </header>
+
+      <form id="infoForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+          />
         </div>
 
-        <br>
-        <button type="reset" id="resetBtn">Reset</button>
-        <button type="submit">Submit</button>
-    </form>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email address"
+            required
+          />
+        </div>
 
-    <hr>
-    <div id="tableContainer"></div>
+        <div class="flex-row">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Your age"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone no.</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your phone no."
+              required
+            />
+          </div>
+        </div>
 
-    <script>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select id="country" name="country" class="tall-select" required>
+            <option value="" disabled selected>Select country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Japan">Japan</option>
+            <option value="China">China</option>
+          </select>
+        </div>
 
-        const form = document.querySelector('#form');
-        const tableContainer = document.querySelector('#tableContainer');
-        
-        form.onsubmit = (e)=>{
-            e.preventDefault();
+        <div class="form-group">
+          <label>Gender</label>
+          <div class="gender-selection">
+            <input type="radio" name="gender" value="Male" id="male" required />
+            <label for="male" class="gender-box">Male</label>
 
-            const name = form.name.value;
-            const age = form.age.value
-            const gender = form.gender.value;
-            const country = form.country.value;
-            const address = form.address.value;
-            const telephone = form.telephone.value;
-            const email = form.email.value;
-            const techStack = [];
+            <input type="radio" name="gender" value="Female" id="female" />
+            <label for="female" class="gender-box">Female</label>
 
-            if(!name || !age || !gender || !country || !address || !telephone || !email){
-                alert("Please fill all required fields");
-                return;
-            }
-            form.tech.forEach((checkbox)=>{
-                if(checkbox.checked){
-                    techStack.push(checkbox.value);
-                }
-            });
-            const table = `
-                <table border="1" cellpadding="10">
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Country</th>
-                        <th>Technological Stack</th>
-                        <th>Address</th>
-                        <th>Telephone</th>
-                        <th>Email</th>
-                    </tr>
-                    <tr>   
-                        <td>${name}</td>
-                        <td>${age}</td>
-                        <td>${gender}</td>
-                        <td>${country}</td>
-                        <td>${techStack.join(', ')}</td>
-                        <td>${address}</td>
-                        <td>${telephone}</td>
-                        <td>${email}</td>
-                    </tr>
-                </table>
-            `;  
-            tableContainer.innerHTML = table;
+            <input type="radio" name="gender" value="Other" id="other" />
+            <label for="other" class="gender-box">Other</label>
+          </div>
+        </div>
 
-            
-        }
+        <div class="form-group">
+          <label>Technological Stack (Select multiple)</label>
+          <div class="custom-multi-select">
+            <div class="select-header" id="techHeader">
+              <span class="select-placeholder">Select technologies</span>
+              <span class="arrow">▼</span>
+            </div>
+            <div class="select-dropdown" id="techDropdown">
+              <label class="checkbox-option">
+                <input type="checkbox" name="tech" value="HTML" />
+                <span>HTML</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="tech" value="CSS" />
+                <span>CSS</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="tech" value="JS" />
+                <span>JS</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="tech" value="React" />
+                <span>React</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="tech" value="React Native" />
+                <span>React Native</span>
+              </label>
+            </div>
+          </div>
+        </div>
 
-        form.onreset = ()=>{
-            tableContainer.innerHTML = '';
-        }
-        
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea
+            id="address"
+            name="address"
+            rows="4"
+            placeholder="Your address"
+            required
+          ></textarea>
+        </div>
 
-    </script>
-</body>
+        <div class="button-container">
+          <button type="reset" class="btn-reset">Reset</button>
+          <button type="submit" class="btn-submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="tableWrapper" class="table-container"></div>
+
+    <script src="script.js"></script>
+  </body>
 </html>

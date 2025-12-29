@@ -1,0 +1,252 @@
+:root {
+    --bg-color: white;
+    --border: lightgray;
+    --text-primary: black;
+    --text-secondary: gray;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 600px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+p {
+    margin: 8px 0 32px 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.flex-row {
+    display: flex;
+    gap: 16px;
+}
+
+.flex-row .form-group {
+    flex: 1;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input,
+select,
+textarea {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tall-select {
+    height: 48px;
+}
+
+.custom-multi-select {
+    position: relative;
+    width: 100%;
+}
+
+.select-header {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.select-header:hover {
+    border-color: #999;
+}
+
+.select-placeholder {
+    color: var(--text-secondary);
+}
+
+.select-placeholder.has-selections {
+    color: var(--text-primary);
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.arrow.open {
+    transform: rotate(180deg);
+}
+
+.select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1000;
+}
+
+.select-dropdown.open {
+    max-height: 250px;
+    opacity: 1;
+    overflow-y: auto;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: 400;
+}
+
+.checkbox-option:hover {
+    background-color: #f3f4f6;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.checkbox-option span {
+    flex: 1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: black;
+}
+
+.gender-selection {
+    display: flex;
+    gap: 12px;
+}
+
+.gender-selection input[type="radio"] {
+    display: none;
+}
+
+.gender-box {
+    flex: 1;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    font-weight: 400;
+    display: block;
+}
+
+.gender-selection input[type="radio"]:checked + .gender-box {
+    border-color: black;
+    background-color: #fafafa;
+    font-weight: 600;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+button {
+    padding: 12px 48px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+}
+
+.btn-reset {
+    background: white;
+    border: 1px solid var(--border);
+    color: black;
+}
+
+.btn-submit {
+    background: black;
+    color: white;
+}
+
+.table-container {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 800px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+    .flex-row,
+    .gender-selection {
+        flex-direction: column;
+    }
+
+    .button-container {
+        justify-content: center;
+    }
+
+    button {
+        flex: 1;
+    }
+}
